@@ -53,10 +53,27 @@ Losses across different runs are saved as a sequence of scalars in the `runs` fo
 
 (the rendering may take a while...)
 
-<div id="gifs" align="center">
+###### Generator progression for score 0:
+
+<div id="score0" align="center">
    <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-0.gif" /> 
+</div>
+
+###### Generator progression for score 1:
+
+<div id="score1" align="center">
    <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-1.gif" /> 
+</div>
+
+###### Generator progression for score 2:
+
+<div id="score2" align="center">
    <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-2.gif" /> 
+</div>
+
+###### Generator progression for score 3:
+
+<div id="score3" align="center">
    <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-3.gif" /> 
 </div>
 
