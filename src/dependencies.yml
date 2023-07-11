@@ -1,0 +1,19 @@
+name: pytorch-env
+channels:
+  - pytorch
+  - nvidia 
+  - defaults
+  - anaconda
+  - conda-forge
+dependencies:
+  - cudatoolkit
+  - cudnn
+  - pytorch
+  - torchvision
+  - torchinfo
+  - tensorboard
+  - matplotlib
+  - tqdm 
+  - pillow
+  - numpy
+
