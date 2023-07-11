@@ -94,7 +94,7 @@ def main(opts):
         utils.make_gif(folder=f"{train_exp_folder}", name="generator_progress", tot_iters=opts.iters)
 
     else:
-        generator.load_weights(path="weights/generator_weights.pth")
+        generator.load_weights(path=f"weights/generator_weights_score-{score}.pth")
         logger.info("Generating new samples ...")
         eval_exp_folder = utils.create_experiment_folder(opts=opts, mode="Evaluation")
         print(f"\nExperiment evaluation folder: {eval_exp_folder}\n")
