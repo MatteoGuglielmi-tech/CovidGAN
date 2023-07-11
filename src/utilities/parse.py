@@ -356,6 +356,15 @@ parser.add_argument(
 
 parser.set_defaults(generate_progress_gif=True)
 
+parser.add_argument(
+        '--samples2generate',
+        '-s2g',
+        type=int,
+        default=100,
+        required=False,
+        help='Number of samples to generate for the gif.',
+        )
+
 opts = parser.parse_args()
 
 # img_shape = (opts.channels, opts.img_size, opts.img_size)
