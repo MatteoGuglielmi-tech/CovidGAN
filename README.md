@@ -36,6 +36,13 @@ To be able to run the source code it is first necessary to install the require d
 or  
 `conda env create -f dependencies.yml`
 
+Final set up step is to run the `setup.sh` script for the creation of the needed folders. To do so, run the following commands from CLI:
+
+```
+chmod u+x setup.sh
+./setup.sh
+```
+
 ##### :rocket: Run the program :rocket:
 
 To get a full list of custom parameters run the following command:  
