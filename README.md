@@ -52,10 +52,10 @@ Losses across different runs are saved as a sequence of scalars in the `runs` fo
 #### :bar_chart: Results :bar_chart:
 
 <div id="gifs" align="center">
-   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-0.gif" width="500" height="500" /> 
-   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-1.gif" width="500" height="500" /> 
-   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-2.gif" width="500" height="500" /> 
-   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-3.gif" width="500" height="500" /> 
+   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-0.gif" /> 
+   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-1.gif" /> 
+   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-2.gif" /> 
+   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-3.gif" /> 
 </div>
 
 #### :wrench: Tools and PL used in this project :wrench:
