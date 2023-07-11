@@ -51,6 +51,8 @@ Losses across different runs are saved as a sequence of scalars in the `runs` fo
 
 #### :bar_chart: Results :bar_chart:
 
+(the rendering may take a while...)
+
 <div id="gifs" align="center">
    <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-0.gif" /> 
    <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/generator_progress_score-1.gif" /> 
