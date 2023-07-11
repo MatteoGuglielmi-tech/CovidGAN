@@ -9,6 +9,8 @@ from typing import List
 import numpy as np
 import torch
 from PIL import Image
+from PIL import ImageDraw
+from PIL import ImageFont
 from sewar.full_ref import msssim
 from sewar.full_ref import psnr
 from sewar.full_ref import psnrb
@@ -89,7 +91,7 @@ def create_experiment_folder(opts: argparse.Namespace, mode: str="Training", add
     return folder_name
 
 
-def make_gif(folder: str, name: str, duration: float=500) -> None:
+def make_gif(folder: str, name: str, duration: float=500, tot_iters: int=4000) -> None:
     """Make a gif from the images in the folder.
 
     @params folder (str): 
@@ -100,10 +102,15 @@ def make_gif(folder: str, name: str, duration: float=500) -> None:
         duration of each frame in the gif in ms
     """
     images = []
+    font = ImageFont.load_default()
     with os.scandir(folder) as it:
-        for entry in it:
+        for idx, entry in enumerate(it):
             if entry.name.endswith(".png") and entry.is_file():
-                images.append(Image.open(entry.path))
+                img = Image.open(entry.path)
+                draw = ImageDraw.Draw(img)
+
+                draw.text((0, 0), f"Iteration [{str(idx*50)}/{tot_iters}]", (255, 255, 255), font=font)
+                images.append(img)
 
     images[0].save(
         f"{folder}/{name}.gif",
