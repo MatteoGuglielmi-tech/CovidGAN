@@ -1,2 +1,4 @@
 ./src/__pycache__/*
+./src/utilities/__pycache__/*
+./src/Models/__pycache__/*
 ./src/NOTES.md
