@@ -7,12 +7,11 @@ import time
 
 import torch
 import torch.nn as nn
-
+from loop import TrainLoop
 from Models.Discriminator import Discriminator
 from Models.EnchancedDiscriminator import RaLSGANDiscriminator
 from Models.EnchancedGenerator import RaLSGANGenerator
 from Models.Generator import Generator
-from new_loop import TrainLoop
 from utilities import torchutils
 from utilities import utils
 from utilities.parse import opts
@@ -62,7 +61,6 @@ def main(opts):
         train_exp_folder = utils.create_experiment_folder(opts=opts)
         print(f"\nExperiment traning folder: {train_exp_folder}\n")
 
-
         generator.apply(torchutils.weights_init)
         discriminator.apply(torchutils.weights_init)
 
@@ -93,20 +91,18 @@ def main(opts):
 
         logger.info("Processing training results ...")
         os.system("tensorboard --logdir=runs")
-        utils.make_gif(folder=f"{train_exp_folder}", name=f"{train_exp_folder}")
+        utils.make_gif(folder=f"{train_exp_folder}", name="generator_progress", tot_iters=opts.iters)
 
     else:
         generator.load_weights(path="weights/generator_weights.pth")
         logger.info("Generating new samples ...")
         eval_exp_folder = utils.create_experiment_folder(opts=opts, mode="Evaluation")
         print(f"\nExperiment evaluation folder: {eval_exp_folder}\n")
-        generator.evaluate(samples2generate=100, expFolder=eval_exp_folder)
+        generator.evaluate(samples2generate=opts.samples2generate, expFolder=eval_exp_folder)
 
         logger.info("Computing similarity score ...")
         start_time = time.time()
-        db = utils.compute_similarity_score(orig_folder=eval_exp_folder, orig_dataset=eval_exp_folder, gen_folder=eval_exp_folder, filename=score, score_names=["msssim"])
-        # db = utils.compute_similarity_score(orig_folder=opts.dataset + f"/{score}", orig_dataset=dataset, gen_folder=eval_exp_folder)
-        # utils.most_similar(db=db, filename=f"{score}.log", score_names=["msssim"])
+        utils.compute_similarity_score(orig_folder=eval_exp_folder, orig_dataset=eval_exp_folder, gen_folder=eval_exp_folder, filename=score, score_names=["msssim"])
         end_time = time.time()
         logger.info(f"Training took {datetime.timedelta(seconds=end_time-start_time)}")
 
