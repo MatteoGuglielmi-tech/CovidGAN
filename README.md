@@ -19,9 +19,15 @@ This project is about devising a method that allows to **generate synthetic medi
 
 #### :interrobang: Why? :interrobang:
 
-- in certain cases, the dataset at disposal is, by nature, strongly unbalanced. Perhaps, generating synthetic images allows **to achieve an homogeneously distributed dataset**;
+- in certain cases, the dataset at disposal is, by nature, strongly unbalanced (Figure. 1). Perhaps, generating synthetic images allows **to achieve an homogeneously distributed dataset**;
 - **synthetic images** might be a key in emergency scenarios. Indeed, it may help in **speeding up the development of automatic methods** for diagnostic and containment purposes.
 - this generative approach can be extended to a variety of cases, without being specifically tied to a single application.
+
+###### Figure 1
+
+<div id="dist" align="center">
+   <img src="https://github.com/MatteoGuglielmi-tech/CovidGAN/blob/main/Images/score_distribution.png" /> 
+</div>
 
 #### :floppy_disk: Data :floppy_disk:
 
