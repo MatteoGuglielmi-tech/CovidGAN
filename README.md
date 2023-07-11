@@ -37,30 +37,32 @@ This method has been **developed and tested upon COVID-19 positive patients** pr
 
 ##### :heavy_plus_sign: Dependencies :heavy_plus_sign:
 
-To be able to run the source code it is first necessary to install the require dependencies. In particular, this operation can be performed either via pip or anaconda. To do so, run one of the following commands:  
-`pip install -r dependencies.yml`  
-or  
-`conda env create -f dependencies.yml`
+To be able to run the source code it is first necessary to install the require dependencies. In particular, this operation can be performed either via pip or anaconda. To do so, run one of the following commands:
 
-Final set up step is to run the `setup.sh` script for the creation of the needed folders. To do so, run the following commands from CLI:
+> `pip install -r dependencies.yml`
 
-```
-chmod u+x setup.sh
-./setup.sh
-```
+or
+
+> `conda env create -f dependencies.yml`
+
+Final set up step is to run the `setup.sh` script for the creation of the needed folders. To do so, run the following commands from CLI:  
+`chmod u+x setup.sh & ./setup.sh`
 
 ##### :rocket: Run the program :rocket:
 
-To get a full list of custom parameters run the following command:  
-`python main.py -h`  
+To get a full list of custom parameters run the following command:
+
+> `python main.py -h`
+
 to trigger the help interface.
 
 To run the program, simply call the python interpreter on `main.py` with the necessary parameters and everything will start running.
 
 ##### :chart_with_downwards_trend: Visualize loss trend across different runs :chart_with_downwards_trend:
 
-Losses across different runs are saved as a sequence of scalars in the `runs` folder. To graphically visualize their trend run the following command:  
-`tensorboard --logdir=runs`
+Losses across different runs are saved as a sequence of scalars in the `runs` folder. To graphically visualize their trend run the following command:
+
+> `tensorboard --logdir=runs`
 
 #### :bar_chart: Results :bar_chart:
 
