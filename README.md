@@ -58,7 +58,7 @@ to trigger the help interface.
 
 To run the program, simply call the python interpreter on `main.py` with the necessary parameters and everything will start running.
 
-##### :chart_with_downwards_trend: Visualize loss trend across different runs :chart_with_downwards_trend:
+##### :chart_with_downwards_trend: Visualize losses from different runs :chart_with_downwards_trend:
 
 Losses across different runs are saved as a sequence of scalars in the `runs` folder. To graphically visualize their trend run the following command:
 
