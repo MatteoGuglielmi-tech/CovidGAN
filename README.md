@@ -2,12 +2,17 @@
 
 - [:rotating_light: Problem statement :rotating_light:](#rotatinglight-problem-statement-rotatinglight)
 - [:interrobang: Why? :interrobang:](#interrobang-why-interrobang)
+  - [Figure 1](#figure-1)
 - [:floppy_disk: Data :floppy_disk:](#floppydisk-data-floppydisk)
 - [:running: Execution :running:](#running-execution-running)
   - [:heavy_plus_sign: Dependencies :heavy_plus_sign:](#heavyplussign-dependencies-heavyplussign)
   - [:rocket: Run the program :rocket:](#rocket-run-the-program-rocket)
-  - [:chart_with_downwards_trend: Visualize loss trend across different runs :chart_with_downwards_trend:](#chartwithdownwardstrend-visualize-loss-trend-across-different-runs-chartwithdownwardstrend)
+  - [:chart_with_downwards_trend: Visualize losses from different runs :chart_with_downwards_trend:](#chartwithdownwardstrend-visualize-losses-from-different-runs-chartwithdownwardstrend)
 - [:bar_chart: Results :bar_chart:](#barchart-results-barchart)
+  - [Generator progression for score 0:](#generator-progression-for-score-0)
+  - [Generator progression for score 1:](#generator-progression-for-score-1)
+  - [Generator progression for score 2:](#generator-progression-for-score-2)
+  - [Generator progression for score 3:](#generator-progression-for-score-3)
 - [:wrench: Tools and PL used in this project :wrench:](#wrench-tools-and-pl-used-in-this-project-wrench)
 <!--toc:end-->
 
@@ -15,13 +20,15 @@
 
 #### :rotating_light: Problem statement :rotating_light:
 
-This project is about devising a method that allows to **generate synthetic medical images**.
+This project consists in devising a method that allows the **generation of synthetic medical images**.
 
 #### :interrobang: Why? :interrobang:
 
-- in certain cases, the dataset at disposal is, by nature, strongly unbalanced (Figure. 1). Perhaps, generating synthetic images allows **to achieve an homogeneously distributed dataset**;
-- **synthetic images** might be a key in emergency scenarios. Indeed, it may help in **speeding up the development of automatic methods** for diagnostic and containment purposes.
-- this generative approach can be extended to a variety of cases, without being specifically tied to a single application.
+The underlying idea was moved by the following aspects:
+
+- very often, the dataset at disposal is, by nature, strongly unbalanced (Fig. 1) and, perhaps, generating synthetic images may allow **achieving a more balanced dataset**;
+- **synthetic images** might be a key in emergency scenarios as they may help in **speeding up the development of automatic methods** for diagnostic and containment purposes;
+- this generative approach can be extended to a wide variety of cases, without being specifically limited to a single application.
 
 ###### Figure 1
 
@@ -31,38 +38,33 @@ This project is about devising a method that allows to **generate synthetic medi
 
 #### :floppy_disk: Data :floppy_disk:
 
-This method has been **developed and tested upon COVID-19 positive patients** provided by the [San Matteo hospital](http://www.sanmatteo.org/site/home.html).
+This method has been **developed and tested on a COVID-19 dataset** of positive patients provided by the [San Matteo hospital](http://www.sanmatteo.org/site/home.html).
 
 #### :running: Execution :running:
 
 ##### :heavy_plus_sign: Dependencies :heavy_plus_sign:
 
-To be able to run the source code it is first necessary to install the require dependencies. In particular, this operation can be performed either via pip or anaconda. To do so, run one of the following commands:
+Firstly, to be able to run the source code, it is necessary to install all the required dependencies and creating the required folders. This can be achieved by running the following command being inside the _GANs/_ folder:
 
-> `pip install -r dependencies.yml`
+> `chmod u+x ./src/set-up/setup.sh & ./src/set-up/setup.sh`
 
-or
-
-> `conda env create -f dependencies.yml`
-
-Final set up step is to run the `setup.sh` script for the creation of the needed folders. To do so, run the following commands from CLI:  
-`chmod u+x setup.sh & ./setup.sh`
+Side note: either conda or pip needs to be installed.
 
 ##### :rocket: Run the program :rocket:
 
-To get a full list of custom parameters run the following command:
+To get a full list of the available parameters, run the following command:
 
 > `python main.py -h`
 
 to trigger the help interface.
 
-To run the program, simply call the python interpreter on `main.py` with the necessary parameters and everything will start running.
+To run the program, simply call the python interpreter on `main.py` with the necessary parameters.
 
 ##### :chart_with_downwards_trend: Visualize losses from different runs :chart_with_downwards_trend:
 
-Losses across different runs are saved as a sequence of scalars in the `runs` folder. To graphically visualize their trend run the following command:
+Losses of different runs are saved as a sequence of scalars in the `all_runs` folder. To graphically visualize their trend run the following command:
 
-> `tensorboard --logdir=runs`
+> `tensorboard --logdir=src/all_runs`
 
 #### :bar_chart: Results :bar_chart:
 
