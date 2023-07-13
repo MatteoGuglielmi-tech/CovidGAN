@@ -111,7 +111,7 @@ def main(opts):
                 )
         end_time = time.time()
         logger.info(f"Training took {datetime.timedelta(seconds=end_time-start_time)}")
-        os.system("python ./results/Evaluation/table_creator.py")
+        os.system(f"python ./results/Evaluation/table_creator.py -ll ./results/Evaluation/{score}/{score}.log")
 
 
 if __name__ == "__main__":
