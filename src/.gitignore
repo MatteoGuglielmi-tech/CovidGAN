@@ -1,12 +1,15 @@
+# Ignore folders
 __pycache__/
 all_runs/runs/
 results/Training/
-results/Evaluation/*
+results/Evaluation/*/*
 
+# Ignore files
 terminal.log
 NOTES.md
 
 
+# Not ignored files
 !results/Evaluation/0/0.log
 !results/Evaluation/0/0.txt
 
