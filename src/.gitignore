@@ -1,5 +1,25 @@
 __pycache__/
 all_runs/runs/
-terminal.log
+results/Training/
+results/Evaluation/*
 
+terminal.log
 NOTES.md
+
+
+!results/Evaluation/0.log
+!results/Evaluation/0.txt
+
+!results/Evaluation/1.log
+!results/Evaluation/1.txt
+
+!results/Evaluation/2.log
+!results/Evaluation/2.txt
+
+!results/Evaluation/3.log
+!results/Evaluation/3.txt
+
+!results/Evaluation/table_creator.py
+
+
+
