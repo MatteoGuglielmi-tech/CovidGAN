@@ -129,15 +129,24 @@ def compute_similarity_score(orig_folder: str, orig_dataset, gen_folder: str, fi
         folder containing original images
     @params gen_folder (str): 
         folder containing generated images
-    @params score_name (List[str], optional):
-        name of the similarity scores to compute
+    @params filename (str):
+        name of the file wherein saving the results
     @params maxBool (bool, optional):
         whether the maximum similarity score corresponds to perfect match or not
 
     @returns db (Dict[str, float]):
         dictionary containing the similarity score for each image where key is the image name and value is the similarity score.
     """
-    local_logger = logger_setup(log_name=filename)
+    model_name = re.search(r"(?<=\d/)\w+(?=-b)", gen_folder)
+    if model_name:
+        model_name = model_name.group()
+        root_name = re.search(r".*(?=\/%s)" % model_name, gen_folder)
+        if root_name:
+            root_name = root_name.group()
+    else:
+        root_name = os.getcwd()
+
+    local_logger = logger_setup(log_name=f"{root_name}/{filename}")
     db = { score_name: {} for score_name in score_names }
     orig_names = [item.name for item in os.scandir(orig_folder) if item.name.endswith(".png") and item.is_file()]
     fake_names = [item.name for item in os.scandir(gen_folder) if item.name.endswith(".png") and item.is_file()]

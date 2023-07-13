@@ -68,6 +68,15 @@ parser.add_argument(
 parser.set_defaults(training=True)
 
 parser.add_argument(
+        '--similarity_scores',
+        '-ss',
+        nargs='+',
+        default=['msssim', 'psnr'],
+        required=False,
+        help='Similarity scores to use for evaluation'
+        )
+
+parser.add_argument(
         '--batch_size',
         '-b',
         type=int,

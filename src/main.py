@@ -26,7 +26,7 @@ def main(opts):
     logger = utils.logger_setup()
     
     torchutils.set_seed()
-    score = re.search(r"\d{1}(?=-root)", opts.dataset).group(0)
+    score = re.findall(r"\d{1}(?=-root)", opts.dataset)[0]
 
     logger.info("Create and set-up models...")
     if not opts.improved:
@@ -102,10 +102,18 @@ def main(opts):
 
         logger.info("Computing similarity score ...")
         start_time = time.time()
-        utils.compute_similarity_score(orig_folder=eval_exp_folder, orig_dataset=eval_exp_folder, gen_folder=eval_exp_folder, filename=score, score_names=["msssim"])
+        utils.compute_similarity_score(
+                orig_folder=eval_exp_folder, 
+                orig_dataset=eval_exp_folder, 
+                gen_folder=eval_exp_folder, 
+                filename=score, 
+                score_names=opts.similarity_scores
+                )
         end_time = time.time()
         logger.info(f"Training took {datetime.timedelta(seconds=end_time-start_time)}")
+        os.system("python ./results/Evaluation/table_creator.py")
 
 
 if __name__ == "__main__":
     main(opts)
+    os.system("rm terminal.log")
