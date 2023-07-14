@@ -1,4 +1,5 @@
 """Utilities for PyTorch."""
+import datetime
 import random
 from typing import Tuple
 
@@ -27,7 +28,7 @@ def set_seed():
 
 def writer_setup():
     """Set up the writer."""
-    writer = SummaryWriter()
+    writer = SummaryWriter(log_dir=f"all_runs/{datetime.datetime.now().strftime('%Y.%m.%d-%H:%M:%S')}")
     return writer
 
 def get_normalization_data(loader: DataLoader) -> Tuple:
