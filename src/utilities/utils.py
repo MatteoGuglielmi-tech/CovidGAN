@@ -48,22 +48,22 @@ def logger_setup(log_name: str="terminal") -> logging.Logger:
     return logger
 
 
-def create_experiment_folder(opts: argparse.Namespace, mode: str="Training", additional: str="") -> str:
+def create_experiment_folder(opts: argparse.Namespace, mode: str="Training") -> str:
     """Create a folder for the experiment.
 
     @params opts (argparse.Namespace): 
         options form CLI
     @params mode (str, optional):
         mode of the experiment (choices are "Training" or "Evaluation")
-    @params additonal(str, optional):
-        additional information to append to folder name
 
     @returns folder_name (str):
         name of the folder
     """
     assert mode in ["Training", "Evaluation"], "Invalid mode. Choose between 'Training' or 'Evaluation'."
 
-    score = re.search(r"\d+(?=-root)", opts.dataset).group()
+    score = re.search(r"\d+(?=-root)", opts.dataset)
+    if score:
+        score = score.group()
     folder_name = f"{os.getcwd()}/results/{mode}/{score}"
     try:
         os.mkdir(folder_name)
@@ -76,14 +76,24 @@ def create_experiment_folder(opts: argparse.Namespace, mode: str="Training", add
     else: 
         folder_name += f"-b{opts.batch_size}-c{opts.channels}-latent{opts.latent_dim}-i{opts.iters}-lrG{opts.lrG}-lrD{opts.lrD}-dcG{opts.decayG}-dcD{opts.decayD}"
     
+    if opts.normalize:
+        if opts.standard_normalization:
+            folder_name += "-standard_normalization"
+        else:
+            folder_name += "-custom_normalization"
+    else:
+        folder_name += "-no_normalization"
+
+    if opts.full_scale:
+        folder_name += "-full_scale"
+    if opts.random_seed:
+        folder_name += f"-rs"
     if opts.noisy_discr_input:
         folder_name += "-noisy_discr_input"
     if opts.label_smoothing:
         folder_name += "-label_smoothing"
     if opts.instance_noise:
         folder_name += "-instance_noise"
-    if len(additional) > 0:
-        folder_name += f"-{additional}"
 
     if not os.path.exists(folder_name):
         os.mkdir(folder_name)
