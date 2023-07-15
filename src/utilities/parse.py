@@ -374,6 +374,15 @@ parser.add_argument(
         help='Number of samples to generate for the gif.',
         )
 
+parser.add_argument(
+        "--gen_weights_fn",
+        "-gp",
+        type=str,
+        default=None,
+        required=False,
+        help="Name of the file containing the generator weights to load."
+        )
+
 opts = parser.parse_args()
 
 # img_shape = (opts.channels, opts.img_size, opts.img_size)
