@@ -84,7 +84,10 @@ def main(opts):
         start_time = time.time()
 
         train_loop.train()
-        generator.save_weights(path=f"weights/generator_weights_score-{score}.pth")
+        if opts.gen_weights_fn is not None:
+            generator.save_weights(path=f"weights/{opts.gen_weights_fn}")
+        else:
+            generator.save_weights(path=f"weights/generator_weights_score-{score}.pth")
 
         end_time = time.time()
         logger.info(f"Training took {datetime.timedelta(seconds=end_time-start_time)}")
