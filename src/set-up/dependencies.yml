@@ -5,6 +5,7 @@ channels:
   - defaults
   - anaconda
   - conda-forge
+  - plotly
 dependencies:
   - cudatoolkit
   - cudnn
@@ -16,4 +17,7 @@ dependencies:
   - tqdm 
   - pillow
   - numpy
+  - pandas
+  - plotly
+  - python-kaleido
 

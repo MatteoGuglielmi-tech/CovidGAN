@@ -15,20 +15,25 @@ function folders() {
 	if [ ! -d "results" ]; then
 		mkdir ../results
 	else
-		if [ ! -d "results/Training" ]; then
-			mkdir ../results/Training
-		fi
-		if [ ! -d "results/Evaluation" ]; then
-			mkdir ../results/Evaluation
-		fi
+		echo "Results folder already exists."
+	fi
+	if [ ! -d "results/Training" ]; then
+		mkdir ../results/Training
+	fi
+	if [ ! -d "results/Evaluation" ]; then
+		mkdir ../results/Evaluation
 	fi
 
 	if [ ! -d "weights" ]; then
 		mkdir ../weights
+	else
+		echo "Weights folder already exists."
 	fi
 
-	if [ ! -d "runs" ]; then
-		mkdir ../runs
+	if [ ! -d "all_runs" ]; then
+		mkdir ../all_runs
+	else
+		echo "Runs folder already exists."
 	fi
 }
 
@@ -40,7 +45,7 @@ function deps() {
 	if [ "$1" == "pip" ]; then
 		pip install -r dependencies.yml
 	else
-		conda env create -f dependencies.yml
+		conda env update -f dependencies.yml
 	fi
 }
 
