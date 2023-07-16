@@ -12,17 +12,21 @@ NOTES.md
 !all_runs/*.tar.gz
 
 # Not ignored files
-!results/Evaluation/0/0.log
-!results/Evaluation/0/0.txt
+!results/Evaluation/0/*.log
+!results/Evaluation/0/*.txt
+!results/Evaluation/0/*.png
 
-!results/Evaluation/1/1.log
-!results/Evaluation/1/1.txt
+!results/Evaluation/1/*.log
+!results/Evaluation/1/*.txt
+!results/Evaluation/1/*.png
 
-!results/Evaluation/2/2.log
-!results/Evaluation/2/2.txt
+!results/Evaluation/2/*.log
+!results/Evaluation/2/*.txt
+!results/Evaluation/2/*.png
 
-!results/Evaluation/3/3.log
-!results/Evaluation/3/3.txt
+!results/Evaluation/3/*.log
+!results/Evaluation/3/*.txt
+!results/Evaluation/3/*.png
 
 !results/Evaluation/table_creator.py
 
