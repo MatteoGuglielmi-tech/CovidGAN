@@ -34,7 +34,7 @@ def logger_setup(log_name: str="terminal") -> logging.Logger:
         datefmt="%d-%b-%y %H:%M:%S",
     )
 
-    file_handler = logging.FileHandler(log_name + ".log")
+    file_handler = logging.FileHandler(log_name + ".log", mode="w")
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(formatter)
 

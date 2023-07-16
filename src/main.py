@@ -24,7 +24,7 @@ def main(opts):
         Command-line arguments.
     """
     logger = utils.logger_setup()
-    
+
     torchutils.set_seed()
     score = re.findall(r"\d{1}(?=-root)", opts.dataset)[0]
 
@@ -114,6 +114,7 @@ def main(opts):
                 )
         end_time = time.time()
         logger.info(f"Training took {datetime.timedelta(seconds=end_time-start_time)}")
+
         os.system(f"python ./results/Evaluation/table_creator.py -ll ./results/Evaluation/{score}/{score}.log")
 
 
