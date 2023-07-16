@@ -1,6 +1,6 @@
 # Ignore folders
 __pycache__/
-all_runs/runs/
+all_runs/
 results/Training/
 results/Evaluation/*/*
 
@@ -8,6 +8,8 @@ results/Evaluation/*/*
 terminal.log
 NOTES.md
 
+# Not ignored folders
+!all_runs/*.tar.gz
 
 # Not ignored files
 !results/Evaluation/0/0.log
