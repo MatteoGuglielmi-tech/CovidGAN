@@ -1,2 +1,5 @@
-results/** filter=lfs diff=lfs merge=lfs -text
+results/Evaluation/0/** filter=lfs diff=lfs merge=lfs -text
+results/Evaluation/1/** filter=lfs diff=lfs merge=lfs -text
+results/Evaluation/2/** filter=lfs diff=lfs merge=lfs -text
+results/Evaluation/3/** filter=lfs diff=lfs merge=lfs -text
 all_runs/** filter=lfs diff=lfs merge=lfs -text
