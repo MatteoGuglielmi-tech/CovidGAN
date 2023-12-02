@@ -1,29 +1,15 @@
 """This script creates a table of similarity score from a log file."""
 import argparse
+import random
 import re
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-
 # from pprint import pprint as pp
 
 # from matplotlib.axes import Axes
-
-# Light colors for the dots
-swarmplot_palette = {
-    "Sqa_par": "#8f96bf",
-    "Sqa_bif": "#ebb0e5",
-    "Sqa_zz": "#9feed3",
-}
-
-# Dark colors for the violin
-violin_palette = {
-    "Sqa_par": "#333c70",
-    "Sqa_bif": "#90367c",
-    "Sqa_zz": "#34906c",
-}
 
 parser = argparse.ArgumentParser(
     prog="Box plotter",
@@ -59,8 +45,22 @@ class BoxPlotCreator:
                 self.score_range: np.ndarray = np.arange(0, 1, 0.1)
             case "psnr":
                 self.score_range: np.ndarray = np.arange(0, 100, 10)
+                # filter from inf values
+                self.table["Score value"].replace(
+                    to_replace=np.inf, value=10000, inplace=True
+                )
+                self.table.dropna(
+                    subset=["Score value"], how="all", inplace=True
+                )
             case "psnrb":
                 self.score_range: np.ndarray = np.arange(0, 100, 10)
+                # filter from inf values
+                self.table["Score value"].replace(
+                    to_replace=[np.inf, -np.inf], value=np.nan, inplace=True
+                )
+                self.table.dropna(
+                    subset=["Score value"], how="all", inplace=True
+                )
             case "sam":
                 self.score_range: np.ndarray = np.arange(0, 180, 18)
             case _:
@@ -75,40 +75,47 @@ class BoxPlotCreator:
         """Generate a violin boxplot."""
         # init settings for plot
         sns.set_context(context="paper")
-        fig, axs = plt.subplots(1, 2, figsize=(10, 6), sharey=True)
+        palette = sns.color_palette("mako").as_hex()
+        fig, axs = plt.subplots(1, 2, figsize=(10, 8))
 
         # create violin plot
-        sns.violinplot(
+        axs[0] = sns.violinplot(
             data=self.table,
             ax=axs[0],
             x="Score name",
             y="Score value",
             inner="box",  # alternatives are: box, point, stick
             linewidth=1.5,
+            hue="Score name",
+            palette=["#7209B7"],
+            legend=False,
         )
 
         # create swarm plot
-        sns.swarmplot(
+        axs[0] = sns.swarmplot(
             data=self.table,
             ax=axs[0],
             x="Score name",
             y="Score value",
-            color="white",
-            edgecolor="gray",
+            color="yellow",
+            edgecolor="auto",
             s=8,  # Circle size
         )
 
         # create box plot
-        sns.boxplot(
+        axs[1] = sns.boxplot(
             data=self.table,
             ax=axs[1],
             x="Score name",
             y="Score value",
             linewidth=1.5,
+            hue="Score name",
+            palette=["#4361EE"],
+            legend=False,
         )
 
         # overlap stripplot
-        sns.stripplot(
+        axs[1] = sns.stripplot(
             data=self.table,
             ax=axs[1],
             x="Score name",
@@ -132,7 +139,25 @@ class BoxPlotCreator:
             + 0.2 * self.table["Score value"].max(),
         )
 
-        fig.suptitle(f"Similarity score : {self.table['Score name'][0]}")
+        fig.suptitle(
+            # NOTE: This is a hacky way to get the score name since in case of psnr and psnrb
+            # a line might be dropped due to inf values and the first line might not be present.
+            f"Similarity score : {self.table['Score name'][self.table.index.values[0]]}"
+        )
+
+        # Set transparency and hatch for violin plot
+        for patch in axs[0].collections[::2]:
+            patch.set_edgecolor("black")
+            patch.set_linewidth(1.5)
+            patch.set_alpha(0.4)
+            patch.set_hatch("///")
+
+        # Set transparency and hatch for box plot
+        for patch in axs[1].patches:
+            patch.set_edgecolor("black")
+            patch.set_linewidth(1.5)
+            patch.set_alpha(0.4)
+            patch.set_hatch("+++")
 
         match = re.search(r"\d(?=/)", self.table_location)
         if match:
